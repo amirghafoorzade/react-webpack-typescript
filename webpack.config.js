@@ -3,44 +3,67 @@ const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-const devMode = process.env.NODE_ENV !== "production";
+module.exports = (env, argv) => {
+  const production = argv.mode === "production";
 
-module.exports = {
-  mode: "production",
-  entry: "./src/index.ts",
-  output: {
-    filename: "bundle.js",
-    path: path.resolve(__dirname, "dist"),
-  },
-  resolve: {
-    extensions: [".tsx", ".ts", ".jsx", ".js"],
-  },
-  module: {
-    rules: [
-      {
-        test: /\.(ts|tsx)$/,
-        exclude: /node_modules/,
-        use: "babel-loader",
-      },
-      {
-        test: /\.css$/i,
-        use: [
-          devMode ? "style-loader" : MiniCssExtractPlugin.loader,
-          "css-loader",
-        ],
-      },
-      {
-        test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/i,
-        type: "asset",
-      },
-    ],
-  },
-  plugins: [
+  const plugins = [
     new webpack.ProvidePlugin({
       React: "react",
     }),
     new HtmlWebpackPlugin({
       template: "./src/index.html",
     }),
-  ].concat(devMode ? [] : [new MiniCssExtractPlugin()]),
+  ];
+
+  if (production)
+    plugins.push(
+      new MiniCssExtractPlugin({
+        filename: "assets/styles/[name].[contenthash].css",
+        chunkFilename: "assets/styles/[id].[contenthash].css",
+      }),
+    );
+
+  return {
+    mode: "production",
+    entry: "./src/index.ts",
+    output: {
+      filename: "bundle.js",
+      path: path.resolve(__dirname, "dist"),
+      clean: true,
+    },
+    resolve: {
+      extensions: [".tsx", ".ts", ".jsx", ".js"],
+    },
+    module: {
+      rules: [
+        {
+          test: /\.(ts|tsx)$/,
+          exclude: /node_modules/,
+          use: "babel-loader",
+        },
+        {
+          test: /\.css$/i,
+          use: [
+            production ? MiniCssExtractPlugin.loader : "style-loader",
+            "css-loader",
+          ],
+        },
+        {
+          test: /\.(png|jpe?g|gif|svg)$/i,
+          type: "asset",
+          generator: {
+            filename: "assets/images/[hash][ext][query]",
+          },
+        },
+        {
+          test: /\.(eot|ttf|woff|woff2)$/i,
+          type: "asset",
+          generator: {
+            filename: "assets/fonts/[hash][ext][query]",
+          },
+        },
+      ],
+    },
+    plugins,
+  };
 };
