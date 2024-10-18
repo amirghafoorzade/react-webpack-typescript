@@ -1,5 +1,5 @@
 import type { MainLayoutProps } from "./types";
-import * as styles from "./styles.module.css";
+import * as styles from "./styles.module.scss";
 
 export default function MainLayout(props: MainLayoutProps) {
   return (
