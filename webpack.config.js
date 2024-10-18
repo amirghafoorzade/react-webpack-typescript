@@ -51,9 +51,6 @@ module.exports = (env, argv) => {
               options: {
                 modules: {
                   mode: "icss",
-                  localIdentName: production
-                    ? "[hash:base64:5]"
-                    : "[local]_[hash:base64:5]",
                 },
               },
             },
