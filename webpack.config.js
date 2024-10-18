@@ -49,7 +49,7 @@ module.exports = (env, argv) => {
             {
               loader: "css-loader",
               options: {
-                module: {
+                modules: {
                   mode: "icss",
                   localIdentName: production
                     ? "[hash:base64:5]"
@@ -66,7 +66,7 @@ module.exports = (env, argv) => {
             {
               loader: "css-loader",
               options: {
-                module: {
+                modules: {
                   mode: "local",
                   localIdentName: production
                     ? "[hash:base64:5]"
