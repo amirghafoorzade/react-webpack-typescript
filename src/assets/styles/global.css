@@ -1,3 +1,4 @@
+@import url("./breakpoints.css");
 @import url("~@/assets/fonts/vazirmatn/vazirmatn.css");
 
 html,
@@ -122,4 +123,18 @@ q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+body {
+  font-family: "vazirmatn";
 }

@@ -1,11 +1,11 @@
 import type { MainLayoutProps } from "./types";
-import styles from "./styles.module.css";
+import * as styles from "./styles.module.css";
 
 export default function MainLayout(props: MainLayoutProps) {
   return (
     <main className={styles["main-layout"]}>
-      <header></header>
-      <div>
+      <header className={styles["header"]}>slm</header>
+      <div className={styles["container"]}>
         <aside></aside>
         <article>{props.children}</article>
       </div>
