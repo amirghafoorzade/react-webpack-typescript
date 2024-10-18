@@ -65,12 +65,42 @@ module.exports = (env, argv) => {
               options: {
                 modules: {
                   mode: "local",
-                  localIdentName: production
-                    ? "[hash:base64:5]"
-                    : "[local]_[hash:base64:5]",
+                  localIdentName: production ? "[hash]" : "[local]_[hash]",
                 },
               },
             },
+          ],
+        },
+        {
+          test: /\.scss$/i,
+          exclude: /\.module\.scss$/i,
+          use: [
+            production ? MiniCssExtractPlugin.loader : "style-loader",
+            {
+              loader: "css-loader",
+              options: {
+                modules: {
+                  mode: "icss",
+                },
+              },
+            },
+            "sass-loader",
+          ],
+        },
+        {
+          test: /\.module\.scss$/i,
+          use: [
+            production ? MiniCssExtractPlugin.loader : "style-loader",
+            {
+              loader: "css-loader",
+              options: {
+                modules: {
+                  mode: "local",
+                  localIdentName: production ? "[hash]" : "[local]_[hash]",
+                },
+              },
+            },
+            "sass-loader",
           ],
         },
         {
