@@ -49,17 +49,25 @@ module.exports = (env, argv) => {
           ],
         },
         {
-          test: /\.(png|jpe?g|gif|svg)$/i,
+          test: /\.(png|jpe?g|gif)$/i,
           type: "asset",
           generator: {
             filename: "assets/images/[hash][ext][query]",
           },
         },
+
         {
           test: /\.(eot|ttf|woff|woff2)$/i,
           type: "asset",
           generator: {
             filename: "assets/fonts/[hash][ext][query]",
+          },
+        },
+        {
+          test: /\.(svg)$/i,
+          type: "asset",
+          generator: {
+            filename: "assets/vectors/[hash][ext][query]",
           },
         },
       ],
