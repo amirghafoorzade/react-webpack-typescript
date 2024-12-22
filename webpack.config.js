@@ -6,8 +6,6 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = (env, argv) => {
   const production = argv.mode === "production";
 
-  const defaultUse = [];
-
   const plugins = [
     new webpack.ProvidePlugin({
       React: "react",
