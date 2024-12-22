@@ -1,0 +1,75 @@
+.typography {
+  line-height: 1.25;
+  color: inherit;
+  &.display {
+    &.large {
+      font-weight: 400;
+      font-size: 4.75rem;
+      line-height: 1.25;
+    }
+    &.medium {
+      font-weight: 400;
+      font-size: 3.75rem;
+    }
+    &.small {
+      font-weight: 400;
+      font-size: 3rem;
+    }
+  }
+  &.headline {
+    &.large {
+      font-weight: 400;
+      font-size: 2.625rem;
+    }
+    &.medium {
+      font-weight: 400;
+      font-size: 2.375rem;
+    }
+    &.small {
+      font-weight: 400;
+      font-size: 2rem;
+    }
+  }
+  &.title {
+    &.large {
+      font-weight: 400;
+      font-size: 1.875rem;
+    }
+    &.medium {
+      font-weight: 500;
+      font-size: 1.375rem;
+    }
+    &.small {
+      font-weight: 500;
+      font-size: 1.125rem;
+    }
+  }
+  &.body {
+    &.large {
+      font-weight: 400;
+      font-size: 1.375rem;
+    }
+    &.medium {
+      font-weight: 400;
+      font-size: 1.125rem;
+    }
+    &.small {
+      font-weight: 400;
+      font-size: 1rem;
+    }
+  }
+  &.label {
+    &.large {
+      font-weight: 500;
+      font-size: 1.125rem;
+    }
+    &.medium {
+      font-weight: 500;
+      font-size: 1rem;
+    }
+    &.small {
+      font-weight: 500;
+      font-size: 0.875rem;
+    }
+  }
+}

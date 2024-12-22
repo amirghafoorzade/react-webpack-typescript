@@ -1,0 +1,24 @@
+@mixin theme($scheme, $is-global: false) {
+  @if $scheme == dark or $scheme == light {
+    @media (prefers-color-scheme: #{$scheme}) {
+      @content;
+    }
+  }
+
+  $selector: &;
+  @at-root {
+    @if $is-global {
+      html.#{$scheme} {
+        #{$selector} {
+          @content;
+        }
+      }
+    } @else {
+      :global(html.#{$scheme}) {
+        #{$selector} {
+          @content;
+        }
+      }
+    }
+  }
+}

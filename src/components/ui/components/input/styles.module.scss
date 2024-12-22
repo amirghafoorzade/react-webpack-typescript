@@ -1,0 +1,27 @@
+@use "../../assets/styles/colors.scss";
+
+.input {
+  height: 3rem;
+  padding: 0 1.5rem;
+  border-radius: 1rem;
+  transition: 100ms ease-in;
+
+  $box-shadow-default: colors.$color-gray-500 0 0.5rem 2rem -1rem;
+  $box-shadow-border: colors.$color-primary-700 0 0 0 1px;
+  $box-shadow-focus: rgba(colors.$color-primary-700, 0.25) 0 0 0 4px;
+  & {
+    background-color: colors.$color-white;
+    box-shadow: $box-shadow-default;
+  }
+  &:not(:disabled) {
+    &:hover {
+      box-shadow: $box-shadow-default, $box-shadow-border;
+    }
+    &:focus {
+      box-shadow: $box-shadow-default, $box-shadow-border, $box-shadow-focus;
+    }
+  }
+  &:disabled {
+    opacity: 0.5;
+  }
+}

@@ -6,6 +6,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = (env, argv) => {
   const production = argv.mode === "production";
 
+  const defaultUse = [];
+
   const plugins = [
     new webpack.ProvidePlugin({
       React: "react",
@@ -69,6 +71,7 @@ module.exports = (env, argv) => {
                 modules: {
                   mode: "local",
                   localIdentName: production ? "[hash]" : "[local]_[hash]",
+                  namedExport: false,
                 },
               },
             },
@@ -100,6 +103,7 @@ module.exports = (env, argv) => {
                 modules: {
                   mode: "local",
                   localIdentName: production ? "[hash]" : "[local]_[hash]",
+                  namedExport: false,
                 },
               },
             },
