@@ -1,0 +1,14 @@
+@import "@/assets/fonts/vazirmatn/vazirmatn.css";
+@import "./reset.css";
+@import "./colors.css";
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: "vazirmatn";
+}

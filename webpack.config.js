@@ -6,6 +6,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = (env, argv) => {
   const production = argv.mode === "production";
 
+  const styleLoader = production ? MiniCssExtractPlugin.loader : "style-loader";
+
   const plugins = [
     new webpack.ProvidePlugin({
       React: "react",
@@ -24,7 +26,7 @@ module.exports = (env, argv) => {
     );
 
   return {
-    mode: "production",
+    mode: production ? "production" : "development",
     entry: "./src/index.ts",
     output: {
       filename: "bundle.js",
@@ -48,7 +50,7 @@ module.exports = (env, argv) => {
           test: /\.css$/i,
           exclude: /\.module\.css$/i,
           use: [
-            production ? MiniCssExtractPlugin.loader : "style-loader",
+            styleLoader,
             {
               loader: "css-loader",
               options: {
@@ -62,7 +64,7 @@ module.exports = (env, argv) => {
         {
           test: /\.module\.css$/i,
           use: [
-            production ? MiniCssExtractPlugin.loader : "style-loader",
+            styleLoader,
             {
               loader: "css-loader",
               options: {
@@ -70,42 +72,10 @@ module.exports = (env, argv) => {
                   mode: "local",
                   localIdentName: production ? "[hash]" : "[local]_[hash]",
                   namedExport: false,
+                  exportLocalsConvention: "as-is",
                 },
               },
             },
-          ],
-        },
-        {
-          test: /\.scss$/i,
-          exclude: /\.module\.scss$/i,
-          use: [
-            production ? MiniCssExtractPlugin.loader : "style-loader",
-            {
-              loader: "css-loader",
-              options: {
-                modules: {
-                  mode: "icss",
-                },
-              },
-            },
-            "sass-loader",
-          ],
-        },
-        {
-          test: /\.module\.scss$/i,
-          use: [
-            production ? MiniCssExtractPlugin.loader : "style-loader",
-            {
-              loader: "css-loader",
-              options: {
-                modules: {
-                  mode: "local",
-                  localIdentName: production ? "[hash]" : "[local]_[hash]",
-                  namedExport: false,
-                },
-              },
-            },
-            "sass-loader",
           ],
         },
         {

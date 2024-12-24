@@ -25,8 +25,6 @@
     "css-loader": "^7.1.2",
     "html-webpack-plugin": "^5.6.2",
     "mini-css-extract-plugin": "^2.9.1",
-    "sass": "^1.80.2",
-    "sass-loader": "^16.0.2",
     "style-loader": "^4.0.0",
     "typescript": "^5.6.3",
     "webpack": "^5.95.0",
