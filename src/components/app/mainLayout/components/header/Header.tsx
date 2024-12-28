@@ -1,9 +1,12 @@
-import brand from "@/assets/images/brand.svg";
+import Menu from "@/assets/icons/menu.svg";
+import styles from "./styles.module.css";
 
 const Header = () => {
   return (
-    <header>
-      <img src={brand} />
+    <header className={styles["header"]}>
+      <button className={styles["menu-button"]}>
+        <Menu style={{ width: "2rem", height: "2rem" }} />
+      </button>
     </header>
   );
 };

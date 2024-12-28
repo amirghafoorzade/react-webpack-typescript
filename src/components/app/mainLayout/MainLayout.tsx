@@ -1,6 +1,5 @@
 import type { MainLayoutProps } from "./types";
-import { Header } from "./components/header";
-import { Aside } from "./components/aside";
+import { Aside, Header } from "./components";
 import styles from "./styles.module.css";
 
 const MainLayout = (props: MainLayoutProps) => {

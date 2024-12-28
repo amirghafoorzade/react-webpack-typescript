@@ -42,7 +42,7 @@ module.exports = (env, argv) => {
     module: {
       rules: [
         {
-          test: /\.(ts|tsx)$/,
+          test: /\.[jt]sx?$/,
           exclude: /node_modules/,
           use: "babel-loader",
         },
@@ -96,9 +96,16 @@ module.exports = (env, argv) => {
         {
           test: /\.(svg)$/i,
           type: "asset",
+          resourceQuery: /url/,
           generator: {
             filename: "assets/vectors/[hash][ext][query]",
           },
+        },
+        {
+          test: /\.svg$/i,
+          issuer: /\.[jt]sx?$/,
+          resourceQuery: { not: [/url/] },
+          use: ["@svgr/webpack"],
         },
       ],
     },
